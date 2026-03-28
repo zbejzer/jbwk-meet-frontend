@@ -10,12 +10,12 @@
         "astro": "astro"
     },
     "dependencies": {
-        "@astrojs/sitemap": "^3.4.1",
+        "@astrojs/sitemap": "^3.7.2",
         "@fortawesome/fontawesome-svg-core": "^6.7.2",
         "@fortawesome/free-brands-svg-icons": "^6.7.2",
         "@fortawesome/free-solid-svg-icons": "^6.7.2",
         "@tailwindcss/vite": "^4.1.11",
-        "astro": "^5.11.0",
+        "astro": "^6.1.1",
         "embla-carousel": "^8.6.0",
         "photoswipe": "^5.4.4",
         "tailwindcss": "^4.1.11"
