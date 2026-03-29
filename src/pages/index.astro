@@ -3,6 +3,7 @@ import { Image } from 'astro:assets'
 
 import MainLayout from '@layouts/MainLayout.astro'
 import Header from '@components/Header.astro'
+import BanerCover from '@components/BanerCover.astro'
 import BanerOverlay from '@components/BanerOverlay.astro'
 import SectionSeparator from '@components/SectionSeparator.astro'
 import TextContainer from '@components/TextContainer.astro'
@@ -13,12 +14,7 @@ import bgPic1 from '@assets/index/bg-pic-1.webp'
 import bgPic2 from '@assets/index/bg-pic-2.webp'
 import bgPic3 from '@assets/index/bg-pic-3.webp'
 import bgPic4 from '@assets/index/bg-pic-4.webp'
-import pixelHeaven from '@assets/index/pixelheaven.png'
-
-import darkProjectLogo from '@assets/index/logo-dark-project.svg'
-import envyTechLogo from '@assets/index/logo-envy-tech.webp'
-import genesisLogo from '@assets/index/logo-genesis.webp'
-import typebuildersLogo from '@assets/index/logo-typebuilders.svg'
+import replayFest from '@assets/index/replay_fest.jpg'
 ---
 
 <MainLayout>
@@ -37,68 +33,27 @@ import typebuildersLogo from '@assets/index/logo-typebuilders.svg'
         </div>
     </section>
     <section>
-        <BanerOverlay imageUrl={bgPic2}>
-            <Fragment>
-                <h1 class="text-2xl">Gdzie widzimy się w tym roku?</h1>
-                <h2 class="text-3xl">Warszawa - 23.08.2025</h2>
-                <p class="w-5/6 md:w-2/3">
-                    Już 23 sierpnia zapraszamy do Stolicy Polski, w tym roku
-                    lecimy z rozmachem! W związku z zeszłoroczną frekwencją
-                    zdecydowaliśmy się na dużo większą przestrzeń! Więcej
-                    informacji znajdziesz poniżej:
-                </p>
-                <a href="/meet-2025">
-                    <Button> Kliknij po więcej informacji! </Button>
-                </a>
-            </Fragment>
-        </BanerOverlay>
-    </section>
-    <section>
-        <SectionSeparator backgroundColor="bg-pixel-heaven">
-            Pixel Heaven Forward 2025
+        <SectionSeparator backgroundColor="text-gray-dark bg-replay-fest">
+            RePlay Fest 2026
         </SectionSeparator>
-        <div class="relative">
-            <Image src={pixelHeaven} alt="" class="w-full" />
-            <div class="my-14 flex flex-col items-center gap-8">
-                <div class="md:w-2/3 xl:w-1/2 2xl:w-5/12">
-                    <p class="text-center text-xl/9 sm:text-start">
-                        Poza nadchodzącym Meetem w tym roku można nas znaleźć
-                        również na Pixel Heaven Forward 2025. Oprócz panelu
-                        ShiftHappens na głównej scenie pierwszego dnia
-                        festiwalu, mamy do dyspozycji również część sali w
-                        której pokażemy wycinek naszych kolekcji.
-                    </p>
-                </div>
+        <BanerCover imageUrl={replayFest}>
+            <Fragment>
+                <p class="w-5/6 text-center text-xl/9 sm:text-start md:w-2/3">
+                    Poza Meetem w tym roku można nas znaleźć również na RePlay
+                    Fest 2026. Pierwszego dnia festiwalu będziemy prowadzili
+                    panel, a w udostępnionej nam części sali będzie można
+                    obejrzeć i poklikąć wycinek naszych kolekcji.
+                </p>
                 <div>
-                    <a href="https://pixelheavenfest.com/" target="_blank">
-                        <Button backgroundColor="bg-pixel-heaven">
-                            Strona Pixel Heaven Forward
+                    <a href="https://replayfest.pl/" target="_blank">
+                        <Button backgroundColor="text-gray-dark bg-replay-fest">
+                            Strona RePlay Fest
                         </Button>
                     </a>
                 </div>
-            </div>
-        </div>
+            </Fragment>
+        </BanerCover>
     </section>
-    <!-- <section>
-        <SectionSeparator>
-            Zobacz jak spędziliśmy czas ostatnio!
-        </SectionSeparator>
-        <script src="@scripts/EmblaCarousel.js" />
-        <div
-            class="my-5 flex rounded-xl py-4 sm:py-3 md:py-5"
-            id="photos-carousel"
-        >
-            <div class="flex align-items-center embla__button--prev">
-                <i class="fs-1 bi bi-chevron-left mx-2"></i>
-            </div>
-            <div class="embla__viewport rounded-5xl w-100 overflow-hidden">
-                <div class="row embla__container flex-nowrap"></div>
-            </div>
-            <div class="flex align-items-center embla__button--next">
-                <i class="fs-1 bi bi-chevron-right mx-2"></i>
-            </div>
-        </div>
-    </section> -->
     <section>
         <SectionSeparator> Grupa na Facebooku </SectionSeparator>
         <BanerOverlay imageUrl={bgPic4} align="justify-end">
