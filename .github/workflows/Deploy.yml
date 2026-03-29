@@ -54,8 +54,8 @@ jobs:
               id: tools
               run: |
                   sudo apt-get update
-                  sudo apt-cache show lftp | grep MD5sum | cut -d ' ' -f2 | echo "LFTP_MD5=$(cat)" >> "$GITHUB_OUTPUT"
-                  sudo apt-cache show lftp | grep Filename | cut -d ' ' -f2 | cut -d '/' -f5 | echo "LFTP_FILE=$(cat)" >> "$GITHUB_OUTPUT"
+                  sudo apt-cache show lftp | grep MD5sum | head -n 1 | cut -d ' ' -f2 | echo "LFTP_MD5=$(cat)" >> "$GITHUB_OUTPUT"
+                  sudo apt-cache show lftp | grep Filename | head -n 1 | cut -d ' ' -f2 | cut -d '/' -f5 | echo "LFTP_FILE=$(cat)" >> "$GITHUB_OUTPUT"
 
             - name: Cache tools
               id: cache-tools
