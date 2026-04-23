@@ -13,6 +13,7 @@
     --color-red: oklch(0.6223 0.2162 26.67);
     --color-pixel-heaven: oklch(0.4541 0.1131 350.15);
     --color-replay-fest: oklch(0.8865 0.1507 198.98);
+    --color-bit-boat-2026: oklch(0.4445 0.1193 343.79);
 
     --breakpoint-3xl: 120rem;
 }
