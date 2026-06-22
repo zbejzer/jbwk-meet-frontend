@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config'
 
 import sitemap from '@astrojs/sitemap'
 
-import tailwindcss from '@tailwindcss/vite'
+import alpinejs from '@astrojs/alpinejs'
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,8 +16,6 @@ export default defineConfig({
         '/meet-2025-rejestracja':
             'https://docs.google.com/forms/d/e/1FAIpQLSd2968UPuHfbYiEdGpKMndIxNjF5kFr_E8OLsrs5ZBR6KYOuQ/viewform',
     },
-    integrations: [sitemap()],
-    vite: {
-        plugins: [tailwindcss()],
-    },
+
+    integrations: [sitemap(), alpinejs()],
 })
