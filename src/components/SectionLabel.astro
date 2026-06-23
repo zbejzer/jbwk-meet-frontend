@@ -1,0 +1,27 @@
+---
+// SectionLabel.astro — Consistent uppercase section heading label
+// Props:
+//   label: string   — the text to display
+//   as?: 'h2' | 'h3' | 'span'  — HTML element (default: 'span')
+//   class?: string  — additional CSS classes
+//
+// Used before section titles throughout the page (e.g. "PROGRAM", "KONKURSY")
+
+const { label, as: Tag = 'span', class: extraClass = '' } = Astro.props
+---
+
+<Tag class={`section-label ${extraClass}`}>
+    {label}
+</Tag>
+
+<style>
+    .section-label {
+        display: block;
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-white-muted);
+        margin-bottom: var(--space-3);
+    }
+</style>

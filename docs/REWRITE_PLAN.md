@@ -34,7 +34,8 @@ This document tracks the incremental rewrite of the meet landing page from a sin
 **Files to create/modify:**
 
 - `src/layouts/BaseLayout.astro` — HTML shell
-- `src/assets/styles/custom-properties.css` — CSS variables (colors, fonts, spacing, breakpoints)
+- `src/assets/styles/theme.css` — CSS variables (colors, fonts, spacing, breakpoints)
+- `src/assets/styles/global.css` — global reset and root-level site defaults
 
 **What this stage includes:**
 
@@ -582,21 +583,21 @@ Stages 3 (Footer) and 4 (Header) are also parallel with the above group once Sta
 
 ## Progress Tracker
 
-| Stage                | Status         | Started | Completed | Notes |
-| -------------------- | -------------- | ------- | --------- | ----- |
-| 0 — Scaffold         | ⬜ not started | —       | —         |       |
-| 1 — Data             | ⬜ not started | —       | —         |       |
-| 2 — Primitives       | ⬜ not started | —       | —         |       |
-| 3 — Footer           | ⬜ not started | —       | —         |       |
-| 4 — Header           | ⬜ not started | —       | —         |       |
-| 5 — Hero + Countdown | ⬜ not started | —       | —         |       |
-| 6 — What Is          | ⬜ not started | —       | —         |       |
-| 7 — Program          | ⬜ not started | —       | —         |       |
-| 8 — Competitions     | ⬜ not started | —       | —         |       |
-| 9 — Venue            | ⬜ not started | —       | —         |       |
-| 10 — BYO Keyboard    | ⬜ not started | —       | —         |       |
-| 11 — Partners        | ⬜ not started | —       | —         |       |
-| 12 — Registration    | ⬜ not started | —       | —         |       |
-| 13 — FAQ             | ⬜ not started | —       | —         |       |
-| 14 — Regulations     | ⬜ not started | —       | —         |       |
-| 15 — Assembly        | ⬜ not started | —       | —         |       |
+| Stage                | Status         | Started    | Completed  | Notes |
+| -------------------- | -------------- | ---------- | ---------- | ----- |
+| 0 — Scaffold         | ✅ completed   | 2026-06-23 | 2026-06-23 |       |
+| 1 — Data             | ✅ completed   | 2026-06-23 | 2026-06-23 |       |
+| 2 — Primitives       | ✅ completed   | 2026-06-23 | 2026-06-23 |       |
+| 3 — Footer           | ⬜ not started | —          | —          |       |
+| 4 — Header           | ⬜ not started | —          | —          |       |
+| 5 — Hero + Countdown | ⬜ not started | —          | —          |       |
+| 6 — What Is          | ⬜ not started | —          | —          |       |
+| 7 — Program          | ⬜ not started | —          | —          |       |
+| 8 — Competitions     | ⬜ not started | —          | —          |       |
+| 9 — Venue            | ⬜ not started | —          | —          |       |
+| 10 — BYO Keyboard    | ⬜ not started | —          | —          |       |
+| 11 — Partners        | ⬜ not started | —          | —          |       |
+| 12 — Registration    | ⬜ not started | —          | —          |       |
+| 13 — FAQ             | ⬜ not started | —          | —          |       |
+| 14 — Regulations     | ⬜ not started | —          | —          |       |
+| 15 — Assembly        | ⬜ not started | —          | —          |       |
