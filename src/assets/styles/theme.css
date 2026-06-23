@@ -3,24 +3,31 @@
    Dark theme, single accent color, one display font. */
 
 :root {
-    /* ── Palette ────────────────────────────────────────────────── */
-    --color-page-bg: #111;
-    --color-text: #fff;
-    --color-text-muted: rgba(255, 255, 255, 0.55);
-    --color-text-dim: rgba(255, 255, 255, 0.35);
+    /* ── Neutral scale ────────────────────────────────────────── */
+    --color-white: oklch(1 0 0);
+    --color-white-muted: oklch(from var(--color-white) l c h / 0.55);
+    --color-white-dim: oklch(from var(--color-white) l c h / 0.35);
+    --color-white-border: oklch(from var(--color-white) l c h / 0.08);
+    --color-white-border-strong: oklch(from var(--color-white) l c h / 0.14);
 
-    --color-accent: #ed3937;
-    --color-accent-hover: #c62f2d;
+    --color-black: oklch(0 0 0);
+    --color-black-800: oklch(0.252 0 0);
+    --color-black-900: oklch(0.2134 0 0);
+    --color-black-905: oklch(0.2002 0 0);
+    --color-black-910: oklch(0.1913 0 0);
+    --color-black-925: oklch(0.1638 0 0);
+    --color-black-950: oklch(0.1448 0 0);
 
-    --color-surface-0: #0a0a0a;
-    --color-surface-1: #0e0e0e;
-    --color-surface-2: #141414;
-    --color-surface-3: #161616;
-    --color-surface-4: #191919;
-    --color-surface-5: #222;
+    --color-gray-light: oklch(0.3829 0 0);
 
-    --color-border: rgba(255, 255, 255, 0.08);
-    --color-border-strong: rgba(255, 255, 255, 0.14);
+    /* ── Accent ────────────────────────────────────────────────── */
+    --color-red: oklch(0.6223 0.2162 26.67);
+    --color-red-muted: oklch(0.5446 0.188 26.67);
+
+    /* ── Event palette (future editions) ──────────────────────── */
+    --color-pixel-heaven: oklch(0.4541 0.1131 350.15);
+    --color-replay-fest: oklch(0.8865 0.1507 198.98);
+    --color-bit-boat-2026: oklch(0.4445 0.1193 343.79);
 
     /* ── Typography ─────────────────────────────────────────────── */
     --font-display: 'Jockey One', sans-serif;
@@ -89,4 +96,5 @@
     --breakpoint-lg: 64rem;
     --breakpoint-xl: 80rem;
     --breakpoint-2xl: 96rem;
+    --breakpoint-3xl: 120rem;
 }
