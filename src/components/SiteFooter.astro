@@ -1,0 +1,115 @@
+---
+// SiteFooter.astro — Shared page footer, used by all pages.
+// Reads all text content from src/data/meet.ts.
+// Contains: MeetLogo, description, social links, email, copyright.
+
+import { FOOTER } from '@data/meet'
+import MeetLogo from '@components/MeetLogo.astro'
+
+const currentYear = new Date().getFullYear()
+const copyright = `© ${currentYear} ${FOOTER.copyright}`
+---
+
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <!-- Logo + description -->
+        <div class="site-footer__brand">
+            <MeetLogo variant="default" size="sm" />
+            <p class="site-footer__desc">
+                {FOOTER.description}
+            </p>
+        </div>
+
+        <!-- Links -->
+        <nav class="site-footer__links" aria-label="Social media">
+            {
+                FOOTER.links.map((link) => (
+                    <a
+                        href={link.url}
+                        class="site-footer__link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {link.label}
+                    </a>
+                ))
+            }
+        </nav>
+
+        <!-- Email -->
+        <a href={`mailto:${FOOTER.email}`} class="site-footer__email">
+            {FOOTER.email}
+        </a>
+
+        <!-- Copyright -->
+        <p class="site-footer__copyright">
+            {copyright}
+        </p>
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        background: var(--color-black-950);
+        border-top: 1px solid var(--color-white-border);
+        padding: var(--space-16) var(--section-padding-x);
+    }
+
+    .site-footer__inner {
+        max-width: var(--content-max-width);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-6);
+        text-align: center;
+    }
+
+    .site-footer__brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-4);
+    }
+
+    .site-footer__desc {
+        font-size: var(--text-sm);
+        color: var(--color-white-muted);
+        line-height: var(--leading-relaxed);
+        max-width: 36ch;
+        margin: 0;
+    }
+
+    .site-footer__links {
+        display: flex;
+        gap: var(--space-6);
+    }
+
+    .site-footer__link {
+        color: var(--color-white-muted);
+        text-decoration: none;
+        font-size: var(--text-sm);
+        transition: color var(--duration-fast) var(--ease-out);
+    }
+
+    .site-footer__link:hover {
+        color: var(--color-white);
+    }
+
+    .site-footer__email {
+        color: var(--color-white-dim);
+        text-decoration: none;
+        font-size: var(--text-sm);
+        transition: color var(--duration-fast) var(--ease-out);
+    }
+
+    .site-footer__email:hover {
+        color: var(--color-white);
+    }
+
+    .site-footer__copyright {
+        font-size: var(--text-xs);
+        color: var(--color-white-dim);
+        margin: 0;
+    }
+</style>

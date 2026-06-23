@@ -324,5 +324,5 @@ export const FOOTER = {
         { label: 'Discord', url: EVENT.discordUrl },
     ],
     email: EVENT.email,
-    copyright: 'JBWK Meet 2026. Wszelkie prawa zastrzeżone.',
+    copyright: 'JBWK Meet. Wszelkie prawa zastrzeżone.',
 } as const
