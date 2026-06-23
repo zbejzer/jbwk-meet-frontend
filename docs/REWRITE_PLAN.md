@@ -589,8 +589,8 @@ Stages 3 (Footer) and 4 (Header) are also parallel with the above group once Sta
 | 1 — Data             | ✅ completed   | 2026-06-23 | 2026-06-23 |       |
 | 2 — Primitives       | ✅ completed   | 2026-06-23 | 2026-06-23 |       |
 | 3 — Footer           | ✅ completed   | 2026-06-23 | 2026-06-23 |       |
-| 4 — Header           | ⬜ not started | —          | —          |       |
-| 5 — Hero + Countdown | ⬜ not started | —          | —          |       |
+| 4 — Header           | ✅ completed   | 2026-06-23 | 2026-06-23 |       |
+| 5 — Hero + Countdown | ✅ completed   | 2026-06-23 | 2026-06-23 |       |
 | 6 — What Is          | ⬜ not started | —          | —          |       |
 | 7 — Program          | ⬜ not started | —          | —          |       |
 | 8 — Competitions     | ⬜ not started | —          | —          |       |

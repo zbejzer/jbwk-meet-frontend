@@ -1,0 +1,150 @@
+---
+// HeroBanner.astro — Hero section for the meet landing page.
+// Props: none — reads all content from src/data/meet.ts.
+// Displays: event badge, date/venue strip, title, subtitle, CTA, and countdown.
+
+import { EVENT, HERO } from '@data/meet'
+import Countdown from '@components/Countdown.astro'
+import Button from '@components/Button.astro'
+---
+
+<section class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__content">
+        <!-- Badge -->
+        <span class="hero__badge">{HERO.badge}</span>
+
+        <!-- Date / venue strip -->
+        <div class="hero__meta">
+            <span>{EVENT.date}</span>
+            <span class="hero__meta-sep">·</span>
+            <span>{EVENT.venue}</span>
+            <span class="hero__meta-sep">·</span>
+            <span>{EVENT.hours}</span>
+        </div>
+
+        <!-- Location -->
+        <p class="hero__location">{EVENT.location}</p>
+
+        <!-- Subtitle -->
+        <p class="hero__subtitle">{HERO.subtitle}</p>
+
+        <!-- CTA -->
+        <div class="hero__cta">
+            <Button href={HERO.ctaHref} variant="primary">
+                {HERO.ctaLabel}
+            </Button>
+        </div>
+
+        <!-- Countdown -->
+        <div class="hero__countdown">
+            <Countdown targetDate={EVENT.dateISO} client:load />
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 120px var(--section-padding-x) var(--space-16);
+        overflow: hidden;
+    }
+
+    .hero__bg {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(ellipse 60% 60% at 50% 30%, oklch(0.2134 0.03 26.67 / 0.15), transparent),
+            radial-gradient(ellipse 50% 40% at 50% 80%, var(--color-black-950), transparent);
+    }
+
+    .hero__content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 860px;
+        gap: var(--space-6);
+    }
+
+    .hero__badge {
+        display: inline-block;
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-white-muted);
+        padding: var(--space-1) var(--space-3);
+        border: 1px solid var(--color-white-border);
+        border-radius: var(--radius-full);
+    }
+
+    .hero__meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-3);
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        letter-spacing: var(--tracking-wide);
+        color: var(--color-white-muted);
+        text-transform: uppercase;
+    }
+
+    .hero__meta-sep {
+        color: var(--color-red);
+        opacity: 0.6;
+    }
+
+    .hero__location {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        color: var(--color-white);
+        margin: 0;
+        letter-spacing: var(--tracking-wide);
+    }
+
+    .hero__subtitle {
+        font-size: var(--text-lg);
+        line-height: var(--leading-relaxed);
+        color: var(--color-white-muted);
+        max-width: 52ch;
+        margin: 0;
+    }
+
+    .hero__cta {
+        margin-top: var(--space-2);
+    }
+
+    .hero__countdown {
+        margin-top: var(--space-10);
+    }
+
+    /* Tablet / Mobile */
+    @media (max-width: 719px) {
+        .hero {
+            padding: 100px var(--space-4) var(--space-12);
+            min-height: 90vh;
+        }
+
+        .hero__meta {
+            font-size: var(--text-xs);
+            gap: var(--space-2);
+        }
+
+        .hero__location {
+            font-size: var(--text-base);
+        }
+
+        .hero__subtitle {
+            font-size: var(--text-base);
+        }
+    }
+</style>

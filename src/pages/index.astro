@@ -1,19 +1,15 @@
 ---
 // Temporary index page — will be replaced in Stage 15 with full composition.
 import BaseLayout from '@layouts/BaseLayout.astro'
+import SiteHeader from '@components/SiteHeader.astro'
 import SiteFooter from '@components/SiteFooter.astro'
+import HeroBanner from '@components/meet/HeroBanner.astro'
 ---
 
 <BaseLayout>
+    <SiteHeader />
     <main>
-        <h1
-            style="padding:2rem;font-family:var(--font-display);text-align:center"
-        >
-            JBWK MEET 2026
-        </h1>
-        <p style="text-align:center;color:var(--color-white-muted)">
-            Stage 0 scaffold — design tokens active.
-        </p>
+        <HeroBanner />
     </main>
     <SiteFooter />
 </BaseLayout>

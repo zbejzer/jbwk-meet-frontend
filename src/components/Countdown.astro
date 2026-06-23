@@ -1,0 +1,136 @@
+---
+// Countdown.astro — Alpine.js countdown timer island.
+// Must be used with client:load directive.
+// Props:
+//   targetDate: string — ISO 8601 datetime (e.g. '2026-07-25T11:00:00+02:00')
+//
+// Displays days / hours / minutes / seconds as four blocks.
+// When the target is reached, shows "Wydarzenie trwa" instead.
+
+interface Props {
+    targetDate: string
+}
+
+const { targetDate } = Astro.props
+---
+
+<countdown-timer
+    x-data="countdown('{targetDate}')"
+    class="countdown"
+    aria-label="Odliczanie do wydarzenia"
+>
+    <template x-if="!started">
+        <div class="countdown__grid">
+            <div class="countdown__item">
+                <span class="countdown__value" x-text="days"></span>
+                <span class="countdown__label">DNI</span>
+            </div>
+            <span class="countdown__sep">:</span>
+            <div class="countdown__item">
+                <span class="countdown__value" x-text="hours"></span>
+                <span class="countdown__label">GODZ</span>
+            </div>
+            <span class="countdown__sep">:</span>
+            <div class="countdown__item">
+                <span class="countdown__value" x-text="minutes"></span>
+                <span class="countdown__label">MIN</span>
+            </div>
+            <span class="countdown__sep">:</span>
+            <div class="countdown__item">
+                <span class="countdown__value" x-text="seconds"></span>
+                <span class="countdown__label">SEK</span>
+            </div>
+        </div>
+    </template>
+    <template x-if="started">
+        <p class="countdown__live">Wydarzenie trwa</p>
+    </template>
+</countdown-timer>
+
+<script>
+    // Alpine.js is loaded globally by @astrojs/alpinejs integration
+    declare const Alpine: any
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('countdown', (isoDate: string) => ({
+            started: false,
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            init() {
+                const target = new Date(isoDate).getTime()
+                const tick = () => {
+                    const now = Date.now()
+                    const diff = target - now
+                    if (diff <= 0) {
+                        this.started = true
+                        return
+                    }
+                    this.days = Math.floor(diff / (1000 * 60 * 60 * 24))
+                    this.hours = Math.floor(
+                        (diff / (1000 * 60 * 60)) % 24,
+                    )
+                    this.minutes = Math.floor(
+                        (diff / (1000 * 60)) % 60,
+                    )
+                    this.seconds = Math.floor((diff / 1000) % 60)
+                }
+                tick()
+                setInterval(tick, 1000)
+            },
+        }))
+    })
+</script>
+
+<style>
+    .countdown {
+        display: flex;
+        justify-content: center;
+    }
+
+    .countdown__grid {
+        display: flex;
+        align-items: center;
+        gap: clamp(4px, 1vw, 12px);
+    }
+
+    .countdown__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: clamp(48px, 8vw, 80px);
+    }
+
+    .countdown__value {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 4vw, 2.75rem);
+        line-height: 1;
+        color: var(--color-white);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .countdown__label {
+        font-family: var(--font-display);
+        font-size: var(--text-xs);
+        letter-spacing: 0.08em;
+        color: var(--color-white-dim);
+        margin-top: var(--space-1);
+    }
+
+    .countdown__sep {
+        font-family: var(--font-display);
+        font-size: clamp(1.25rem, 3vw, 2rem);
+        color: var(--color-white-dim);
+        padding-bottom: 1rem;
+    }
+
+    .countdown__live {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        color: var(--color-red);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin: 0;
+    }
+</style>
