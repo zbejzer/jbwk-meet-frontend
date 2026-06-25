@@ -26,6 +26,13 @@ export interface SectionId {
 
 // ─── Event Constants ────────────────────────────────────────────
 
+export const BRAND = {
+    email: 'wspolpraca@jbwk.pl',
+    discordUrl: 'https://discord.com/invite/D5MyzMXqAG',
+    instagramUrl: 'https://www.instagram.com/jak_bedzie_w_klawiaturach/',
+    facebookGroupUrl: 'https://www.facebook.com/groups/266901557998281/',
+}
+
 export const EVENT = {
     date: '25.07.2026',
     dateISO: '2026-07-25T11:00:00+02:00',
@@ -36,22 +43,13 @@ export const EVENT = {
     address: 'ul. Rzymowskiego 32',
     addressSub: 'Wjazd od ul. Rzymowskiego',
 
-    accentColor: '#ED3937',
-
     // URLs
-    registrationUrl:
-        'https://docs.google.com/forms/d/e/1FAIpQLSd2968UPuHfbYiEdGpKMndIxNjF5kFr_E8OLsrs5ZBR6KYOuQ/viewform',
-    regulaminUrl:
-        'https://drive.google.com/file/d/115KcC0Arak7DDlc1L4JtB5jiWkjw0W5x/view',
-    zgodaRodzicaUrl:
-        'https://drive.google.com/file/d/1RmVEsZ90yjWfZVSmk64S_4W6CiFDfWQc/view',
+    registrationUrl: '/meet-2026-rejestracja',
+    regulaminUrl: '/meet-2026-regulamin',
+    zgodaRodzicaUrl: '/meet-2026-zgoda-rodzica',
     mapsUrl: 'https://maps.app.goo.gl/1nF6BK3JHzSE2Tcx6',
-    discordUrl: '#',
-    instagramUrl: '#',
-    facebookUrl: '#',
-    email: 'kontakt@jbwk.pl',
-    zgodyMail: 'zgody@jbwk.pl',
-    instagramHandle: '@jak_bedzie_w_klawiaturkach',
+    formsUrl: 'https://forms.gle/bfRhUFYgonxFb74Z6'
+    zgodyEmail: 'rejestracja@jbwk.pl',
 } as const
 
 // ─── Page Metadata ──────────────────────────────────────────────
@@ -273,7 +271,7 @@ export const FAQ = {
     discordCta:
         'Nie znalazłeś odpowiedzi? Napisz do nas na Discordzie — odpowiadamy w ciągu dnia.',
     discordButtonLabel: 'Dołącz na nasz Discord i pytaj śmiało',
-    discordUrl: EVENT.discordUrl,
+    discordUrl: BRAND.discordUrl,
     items: [
         {
             question: 'Czy wstęp jest płatny?',
@@ -334,10 +332,9 @@ export const FOOTER = {
         { label: 'Wiki', href: 'blank' },
     ],
     socialLinks: [
-        { label: 'Discord', href: EVENT.discordUrl },
-        { label: 'Instagram', href: EVENT.instagramUrl },
-        { label: 'Facebook', href: EVENT.facebookUrl },
+        { label: 'Discord', href: BRAND.discordUrl },
+        { label: 'Instagram', href: BRAND.instagramUrl },
+        { label: 'Facebook', href: BRAND.facebookGroupUrl },
     ],
-    email: EVENT.email,
     copyright: 'Wszystkie prawa zastrzeżone',
 } as const
