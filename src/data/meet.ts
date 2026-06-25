@@ -31,6 +31,7 @@ export const EVENT = {
     dateISO: '2026-07-25T11:00:00+02:00',
     venue: 'Dom Kultury Kadr',
     hours: '11:00 — 17:00',
+    city: 'Warszawa',
     location: 'Warszawa, Mokotów',
     address: 'ul. Rzymowskiego 32',
     addressSub: 'Wjazd od ul. Rzymowskiego',
@@ -47,6 +48,7 @@ export const EVENT = {
     mapsUrl: 'https://maps.app.goo.gl/1nF6BK3JHzSE2Tcx6',
     discordUrl: '#',
     instagramUrl: '#',
+    facebookUrl: '#',
     email: 'kontakt@jbwk.pl',
     zgodyMail: 'zgody@jbwk.pl',
     instagramHandle: '@jak_bedzie_w_klawiaturkach',
@@ -67,29 +69,33 @@ export const NAV_LINKS: { label: string; href: string }[] = [
     { label: 'Program', href: '#program' },
     { label: 'Konkursy', href: '#konkursy' },
     { label: 'Lokalizacja', href: '#lokalizacja' },
+    { label: 'Klawiatura', href: '#klawiatura' },
     { label: 'Partnerzy', href: '#partnerzy' },
     { label: 'FAQ', href: '#faq' },
 ]
 
 export const NAV_CTA = {
-    label: 'Zapisz się',
+    label: 'Zarejestruj się',
     href: EVENT.registrationUrl,
 } as const
 
 // ─── Hero ───────────────────────────────────────────────────────
 
 export const HERO = {
-    badge: 'MEET 2026',
-    subtitle:
-        'Coroczne spotkanie polskiej społeczności klawiatur mechanicznych. Buildy, thocki, konkursy i luźne rozmowy przy klawiaturach.',
-    ctaLabel: 'Zobacz program',
-    ctaHref: '#program',
+    registrationStatus: 'Rejestracja otwarta · Edycja 2026',
+    headingLine1: 'JBWK',
+    headingLine2: 'MEET',
+    headingAccent: '2026',
+    ctaRegistrationLabel: 'Zarejestruj się',
+    ctaRegistrationHref: EVENT.registrationUrl,
+    ctaProgramLabel: 'Zarejestruj się',
+    ctaProgramHref: EVENT.registrationUrl,
 } as const
 
 // ─── What Is Section ────────────────────────────────────────────
 
 export const WHAT_IS = {
-    label: 'CZYM JEST JBWK MEET?',
+    label: 'Czym jest JBWK Meet?',
     stats: [
         { value: '100+', label: 'oczekiwanych gości' },
         { value: '100+', label: 'wystawionych buildów' },
@@ -103,7 +109,7 @@ export const WHAT_IS = {
 // ─── Program Section ────────────────────────────────────────────
 
 export const PROGRAM = {
-    label: 'PROGRAM',
+    label: 'Program',
     note: 'Plan jeszcze ewoluuje — finalne godziny niektórych konkursów uściślimy bliżej daty na Discordzie. Wszystkie atrakcje są opcjonalne, możesz przyjść po prostu pochodzić między buildami.',
     items: [
         {
@@ -319,10 +325,19 @@ export const REGULATIONS = {
 export const FOOTER = {
     description:
         'Coroczne spotkanie polskiej społeczności klawiatur mechanicznych. Edycja 2026 — Warszawa, 25 lipca.',
-    links: [
-        { label: 'Instagram', url: EVENT.instagramUrl },
-        { label: 'Discord', url: EVENT.discordUrl },
+    navLinksLabel: 'Nawigacja',
+    metaLinksLabel: 'JBWK',
+    socialLinksLabel: 'Social',
+    metaLinks: [
+        { label: 'Wróć na stronę główną', href: 'blank' },
+        { label: 'Galeria 2025', href: 'blank' },
+        { label: 'Wiki', href: 'blank' },
+    ],
+    socialLinks: [
+        { label: 'Discord', href: EVENT.discordUrl },
+        { label: 'Instagram', href: EVENT.instagramUrl },
+        { label: 'Facebook', href: EVENT.facebookUrl },
     ],
     email: EVENT.email,
-    copyright: 'JBWK Meet. Wszelkie prawa zastrzeżone.',
+    copyright: 'Wszystkie prawa zastrzeżone',
 } as const

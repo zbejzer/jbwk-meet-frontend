@@ -5,8 +5,9 @@
 :root {
     /* ── Neutral scale ────────────────────────────────────────── */
     --color-white: oklch(1 0 0);
-    --color-white-muted: oklch(from var(--color-white) l c h / 0.55);
-    --color-white-dim: oklch(from var(--color-white) l c h / 0.35);
+    --color-white-70: oklch(from var(--color-white) l c h / 0.7);
+    --color-white-55: oklch(from var(--color-white) l c h / 0.55);
+    --color-white-35: oklch(from var(--color-white) l c h / 0.35);
     --color-white-border: oklch(from var(--color-white) l c h / 0.08);
     --color-white-border-strong: oklch(from var(--color-white) l c h / 0.14);
 
@@ -30,8 +31,8 @@
     --color-bit-boat-2026: oklch(0.4445 0.1193 343.79);
 
     /* ── Typography ─────────────────────────────────────────────── */
-    --font-display: 'Jockey One', sans-serif;
     --font-body: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-jockey-one: 'Jockey One', var(--font-body);
 
     --text-xs: 0.75rem;
     --text-sm: 0.875rem;
@@ -49,7 +50,9 @@
 
     --tracking-tight: -0.02em;
     --tracking-normal: 0;
-    --tracking-wide: 0.04em;
+    --tracking-wide: 0.05em;
+    --tracking-wider: 0.1em;
+    --tracking-widest: 0.15em;
 
     /* ── Spacing ────────────────────────────────────────────────── */
     --space-1: 4px;
@@ -58,19 +61,22 @@
     --space-4: 16px;
     --space-5: 20px;
     --space-6: 24px;
+    --space-7: 28px;
     --space-8: 32px;
+    --space-9: 36px;
     --space-10: 40px;
     --space-12: 48px;
     --space-16: 64px;
     --space-20: 80px;
     --space-24: 96px;
 
-    --section-padding-y: var(--space-24);
-    --section-padding-x: var(--space-6);
+    --section-padding-y: var(6rem);
+    --section-padding-x: var(1.5rem);
 
     /* ── Layout ─────────────────────────────────────────────────── */
-    --content-max-width: 1400px;
+    --content-container-desktop: 1400px;
     --content-narrow: 640px;
+    --header-height: 68px;
 
     /* ── Radii ──────────────────────────────────────────────────── */
     --radius-sm: 6px;

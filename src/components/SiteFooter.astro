@@ -1,31 +1,61 @@
 ---
 // SiteFooter.astro — Shared page footer, used by all pages.
+// Layout: logo + description left, social links + email + copyright right.
 // Reads all text content from src/data/meet.ts.
-// Contains: MeetLogo, description, social links, email, copyright.
 
 import { FOOTER } from '@data/meet'
-import MeetLogo from '@components/MeetLogo.astro'
+import { NAV_LINKS } from '@data/meet'
+import { Image } from 'astro:assets'
+import meetLogo from '@assets/images/jbwk-meet-logo.svg'
 
 const currentYear = new Date().getFullYear()
-const copyright = `© ${currentYear} ${FOOTER.copyright}`
+const copyright = `© ${currentYear}`
 ---
 
 <footer class="site-footer">
-    <div class="site-footer__inner">
+    <div class="site-footer__inner content-container">
         <!-- Logo + description -->
         <div class="site-footer__brand">
-            <MeetLogo variant="default" size="sm" />
-            <p class="site-footer__desc">
-                {FOOTER.description}
-            </p>
+            <div class="site-footer__brand-logo-container">
+                <Image
+                    src={meetLogo}
+                    alt="Logo JBWK Meet"
+                    class="site-footer__brand-logo"
+                />
+            </div>
+            <p class="site-footer__brand-desc">{FOOTER.description}</p>
         </div>
 
-        <!-- Links -->
-        <nav class="site-footer__links" aria-label="Social media">
+        <nav class="site-footer__links-section">
+            <!-- <span class="site-footer__links-section-heading"
+                >{FOOTER.navLinksLabel}</span
+            >
             {
-                FOOTER.links.map((link) => (
+                NAV_LINKS.map((link) => (
                     <a
-                        href={link.url}
+                        href={link.href}
+                        class="site-footer__link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {link.label}
+                    </a>
+                ))
+            } -->
+        </nav>
+        <nav class="site-footer__links-section">
+            <!-- <span class="site-footer__links-section-heading"
+                >{FOOTER.metaLinksLabel}</span
+            > -->
+        </nav>
+        <nav class="site-footer__links-section" aria-label="Social media">
+            <span class="site-footer__links-section-heading"
+                >{FOOTER.socialLinksLabel}</span
+            >
+            {
+                FOOTER.socialLinks.map((link) => (
+                    <a
+                        href={link.href}
                         class="site-footer__link"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -35,16 +65,15 @@ const copyright = `© ${currentYear} ${FOOTER.copyright}`
                 ))
             }
         </nav>
-
-        <!-- Email -->
-        <a href={`mailto:${FOOTER.email}`} class="site-footer__email">
-            {FOOTER.email}
-        </a>
-
-        <!-- Copyright -->
-        <p class="site-footer__copyright">
-            {copyright}
-        </p>
+    </div>
+    <div class="site-copyright content-container">
+        <span class="site-copyright__notice">
+            <span>{copyright}</span>
+            <span>JBWK</span>
+            <span>·</span>
+            <span>{FOOTER.copyright}</span>
+        </span>
+        <span>Jak będzie w klawiaturach?</span>
     </div>
 </footer>
 
@@ -52,43 +81,68 @@ const copyright = `© ${currentYear} ${FOOTER.copyright}`
     .site-footer {
         background: var(--color-black-950);
         border-top: 1px solid var(--color-white-border);
-        padding: var(--space-16) var(--section-padding-x);
+        padding: 48px 0px 36px;
+        font-family: var(--font-jockey-one);
+        font-size: var(--text-xs);
     }
 
     .site-footer__inner {
-        max-width: var(--content-max-width);
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--space-6);
-        text-align: center;
+        display: grid;
+        padding: 0px 48px;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+        margin: 0px auto 32px;
     }
 
     .site-footer__brand {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: var(--space-4);
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .site-footer__brand-logo {
+        display: block;
+        object-fit: contain;
+        height: 100%;
+        width: auto;
     }
 
-    .site-footer__desc {
-        font-size: var(--text-sm);
-        color: var(--color-white-muted);
+    .site-footer__brand-logo-container {
+        font-size: var(--text-xl);
+        height: 1lh;
+    }
+
+    .site-footer__brand-desc {
+        color: var(--color-white-35);
         line-height: var(--leading-relaxed);
-        max-width: 36ch;
-        margin: 0;
+        width: 70%;
+        font-size: var(--text-sm);
     }
 
-    .site-footer__links {
+    .site-footer__links-section {
         display: flex;
-        gap: var(--space-6);
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .site-footer__links-section > * {
+        display: block;
+        letter-spacing: var(--tracking-wide);
+    }
+
+    .site-footer__links-section-heading {
+        color: var(--color-white-35);
+        margin-bottom: 14px;
+        text-transform: uppercase;
     }
 
     .site-footer__link {
-        color: var(--color-white-muted);
+        color: var(--color-white-55);
+        letter-spacing: 0.04em;
+        padding: 4px 0px;
         text-decoration: none;
-        font-size: var(--text-sm);
         transition: color var(--duration-fast) var(--ease-out);
     }
 
@@ -96,20 +150,41 @@ const copyright = `© ${currentYear} ${FOOTER.copyright}`
         color: var(--color-white);
     }
 
-    .site-footer__email {
-        color: var(--color-white-dim);
-        text-decoration: none;
-        font-size: var(--text-sm);
-        transition: color var(--duration-fast) var(--ease-out);
-    }
-
-    .site-footer__email:hover {
-        color: var(--color-white);
-    }
-
-    .site-footer__copyright {
+    .site-copyright {
         font-size: var(--text-xs);
-        color: var(--color-white-dim);
-        margin: 0;
+        letter-spacing: var(--tracking-wider);
+        color: oklch(from var(--color-white) l c h / 0.35);
+        padding: 24px 48px 0px;
+        border-top: 1px solid oklch(from var(--color-white) l c h / 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        text-transform: uppercase;
+    }
+
+    .site-copyright__notice {
+        display: inline-flex;
+        flex-wrap: nowrap;
+        gap: 0.25em;
+    }
+
+    /* Tablet / Mobile: single column stack */
+    @media (max-width: 719px) {
+        .site-footer__inner {
+            grid-template-columns: 1fr;
+            gap: var(--space-12);
+            text-align: center;
+        }
+
+        .site-footer__brand {
+            align-items: center;
+        }
+
+        .site-footer__meta {
+            align-items: center;
+            text-align: center;
+        }
     }
 </style>

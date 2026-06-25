@@ -2,6 +2,8 @@
 // BaseLayout.astro — HTML shell used by all pages.
 // Provides: <html>, <head> with fonts & meta, global resets, custom properties.
 
+import { PAGE } from '@data/meet'
+
 // Global reset & theme
 import '@assets/styles/global.css'
 ---
@@ -12,6 +14,9 @@ import '@assets/styles/global.css'
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+        <title>{PAGE.title}</title>
+        <meta name="description" content={PAGE.description} />
+
         <!-- Fonts: Jockey One (display) -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,9 +24,6 @@ import '@assets/styles/global.css'
             href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap"
             rel="stylesheet"
         />
-
-        <!-- Design tokens -->
-        <link rel="stylesheet" href="/src/assets/styles/global.css" />
     </head>
     <body>
         <slot />

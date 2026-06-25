@@ -1,0 +1,63 @@
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: var(--tracking-wide);
+    line-height: 1;
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.btn--cta {
+    transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.btn--cta:hover {
+    transform: translateY(-2px);
+}
+
+.btn--cta:active {
+    transform: translateY(0);
+}
+
+/* ── Primary variant ────────────────────────────── */
+.btn--primary {
+    background: var(--color-red);
+    color: var(--color-white);
+    border-color: rgba(255, 255, 255, 0.15);
+
+    transition: background var(--duration-fast) var(--ease-out);
+}
+
+.btn--primary:hover {
+    background: var(--color-red-muted);
+}
+
+/* ── Secondary variant ──────────────────────────── */
+.btn--secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-text);
+    border-color: var(--color-border-strong);
+
+    transition: background var(--duration-fast) var(--ease-out);
+}
+
+.btn--secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 719px) {
+    .btn {
+        font-size: var(--text-base);
+        padding: var(--space-3) var(--space-5);
+        width: 100%;
+    }
+}

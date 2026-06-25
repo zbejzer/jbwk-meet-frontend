@@ -1,44 +1,86 @@
 ---
 // HeroBanner.astro — Hero section for the meet landing page.
-// Props: none — reads all content from src/data/meet.ts.
-// Displays: event badge, date/venue strip, title, subtitle, CTA, and countdown.
+// Matches preview.html reference structure:
+//   1. "REJESTRACJA OTWARTA · EDYCJA 2026" status strip
+//   2. Split heading: JBWK / MEET 2026 (with "2026" in red accent)
+//   3. Date / WARSZAWA / Hours strip with "/" separators
+//   4. CTA button
+//   5. Countdown timer
 
 import { EVENT, HERO } from '@data/meet'
 import Countdown from '@components/Countdown.astro'
-import Button from '@components/Button.astro'
+import skylineBackground from '@assets/images/warsaw-skyline.jpg'
+import { Image } from 'astro:assets'
+import '@assets/styles/cta-button.css'
 ---
 
 <section class="hero">
-    <div class="hero__bg"></div>
-    <div class="hero__content">
-        <!-- Badge -->
-        <span class="hero__badge">{HERO.badge}</span>
-
-        <!-- Date / venue strip -->
-        <div class="hero__meta">
-            <span>{EVENT.date}</span>
-            <span class="hero__meta-sep">·</span>
-            <span>{EVENT.venue}</span>
-            <span class="hero__meta-sep">·</span>
-            <span>{EVENT.hours}</span>
+    <Image
+        src={skylineBackground}
+        alt="Panorama Warszawy"
+        class="hero__bg"
+        loading="eager"
+    />
+    <div class="hero__inner content-container">
+        <!-- Registration status -->
+        <div class="hero__reg-status">
+            <div class="hero__reg-status-dot"></div>
+            <div class="hero__reg-status__content">
+                {HERO.registrationStatus}
+            </div>
         </div>
 
-        <!-- Location -->
-        <p class="hero__location">{EVENT.location}</p>
+        <!-- Split heading -->
+        <h1 class="hero__title">
+            <span class="hero__title-line" style="grid-area: 1 / 1;">JBWK</span>
+            <span
+                class="hero__title-line hero__title-line--accent"
+                style="grid-area: 2 / 1;">Meet&nbsp;</span
+            >
+            <span class="hero__title-line" style="grid-area: 2 / 2;">2026</span>
+        </h1>
 
-        <!-- Subtitle -->
-        <p class="hero__subtitle">{HERO.subtitle}</p>
-
-        <!-- CTA -->
-        <div class="hero__cta">
-            <Button href={HERO.ctaHref} variant="primary">
-                {HERO.ctaLabel}
-            </Button>
+        <!-- Date / WARSZAWA / Hours strip -->
+        <div class="hero__subtitle">
+            <span>{EVENT.date}</span>
+            <span class="hero__subtitle-sep">/</span>
+            <span>{EVENT.city}</span>
+            <span class="hero__subtitle-sep">/</span>
+            <span>{EVENT.venue}</span>
+            <span class="hero__subtitle-sep">/</span>
+            <span>{EVENT.hours}</span>
         </div>
 
         <!-- Countdown -->
         <div class="hero__countdown">
-            <Countdown targetDate={EVENT.dateISO} client:load />
+            <Countdown targetDate={EVENT.dateISO} />
+        </div>
+
+        <!-- CTA -->
+        <div class="hero__cta">
+            <a
+                href={HERO.ctaRegistrationHref}
+                class="btn btn--primary btn--cta hero__cta-btn"
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+            >
+                {HERO.ctaRegistrationLabel}
+                <span class="hero__cta-btn-icon">
+                    <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                        ><path
+                            d="M5 12h13M13 6l6 6-6 6"
+                            stroke="currentColor"
+                            stroke-width="2.4"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path></svg
+                    >
+                </span>
+            </a>
         </div>
     </div>
 </section>
@@ -46,105 +88,176 @@ import Button from '@components/Button.astro'
 <style>
     .hero {
         position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         min-height: 100vh;
-        padding: 120px var(--section-padding-x) var(--space-16);
-        overflow: hidden;
     }
 
     .hero__bg {
         position: absolute;
-        inset: 0;
-        background:
-            radial-gradient(ellipse 60% 60% at 50% 30%, oklch(0.2134 0.03 26.67 / 0.15), transparent),
-            radial-gradient(ellipse 50% 40% at 50% 80%, var(--color-black-950), transparent);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -10;
     }
 
-    .hero__content {
+    .hero::after {
+        position: absolute;
+        inset: 0;
+        z-index: -5;
+        content: '';
+
+        background: linear-gradient(
+            rgba(17, 17, 17, 0.72) 0%,
+            rgba(17, 17, 17, 0.5) 40%,
+            rgba(17, 17, 17, 0.92) 100%
+        );
+    }
+
+    .hero__inner {
         position: relative;
-        z-index: 1;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-        max-width: 860px;
-        gap: var(--space-6);
-    }
-
-    .hero__badge {
-        display: inline-block;
-        font-family: var(--font-display);
-        font-size: var(--text-sm);
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--color-white-muted);
-        padding: var(--space-1) var(--space-3);
-        border: 1px solid var(--color-white-border);
-        border-radius: var(--radius-full);
-    }
-
-    .hero__meta {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
         justify-content: center;
+        align-items: flex-start;
+        z-index: 10;
+        padding-top: 2rem;
+        padding-bottom: 2.5rem;
+        top: var(--header-height);
+
+        text-align: left;
+    }
+
+    .hero__reg-status {
+        font-family: var(--font-jockey-one);
+        font-size: var(--text-xs);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--color-white);
+        margin-bottom: var(--space-7);
+        display: inline-flex;
+        align-items: center;
         gap: var(--space-3);
-        font-family: var(--font-display);
-        font-size: var(--text-sm);
-        letter-spacing: var(--tracking-wide);
-        color: var(--color-white-muted);
+        padding: 0.5em 1em;
+        border-radius: var(--radius-full);
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--color-white-border-strong);
+    }
+
+    .hero__reg-status-dot {
+        display: inline-block;
+        width: 0.625em;
+        height: 0.625em;
+        border-radius: 50%;
+        background: var(--color-red);
+        box-shadow: var(--color-red) 0px 0px 1em;
+    }
+    .hero__reg-status__content {
+        opacity: 0.85;
+    }
+
+    .hero__title {
+        font-family: var(--font-jockey-one);
+        font-weight: bold;
+        font-size: clamp(3.5rem, 9vw, 10.5rem);
+        line-height: 0.9;
+        letter-spacing: 0.01em;
+        color: var(--color-white);
+        margin: 0 0 var(--space-9);
+        display: grid;
+        grid-template-columns: 1fr, auto;
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .hero__title-line {
+        display: block;
         text-transform: uppercase;
     }
 
-    .hero__meta-sep {
+    .hero__title-line--accent {
         color: var(--color-red);
-        opacity: 0.6;
-    }
-
-    .hero__location {
-        font-family: var(--font-display);
-        font-size: var(--text-xl);
-        color: var(--color-white);
-        margin: 0;
-        letter-spacing: var(--tracking-wide);
     }
 
     .hero__subtitle {
-        font-size: var(--text-lg);
-        line-height: var(--leading-relaxed);
-        color: var(--color-white-muted);
-        max-width: 52ch;
-        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 18px;
+        font-family: var(--font-jockey-one);
+        font-size: var(--text-base);
+        letter-spacing: var(--tracking-widest);
+        color: var(--color-white);
+        text-transform: uppercase;
     }
 
-    .hero__cta {
-        margin-top: var(--space-2);
+    .hero__subtitle span:not(.hero__subtitle-sep) {
+        opacity: 0.75;
+    }
+
+    .hero__subtitle span:not(.hero__subtitle-sep):first-of-type {
+        opacity: 1;
+    }
+
+    .hero__subtitle-sep {
+        opacity: 0.25;
     }
 
     .hero__countdown {
         margin-top: var(--space-10);
     }
 
-    /* Tablet / Mobile */
+    .hero__cta {
+        margin-top: var(--space-12);
+    }
+
+    .hero__cta-btn {
+        font-weight: 400;
+        font-family: var(--font-jockey-one);
+        font-size: var(--text-xl);
+        text-transform: uppercase;
+        gap: 14px;
+        padding: 18px 28px 18px 32px;
+        letter-spacing: var(--tracking-wide);
+        border-radius: 11px;
+        box-shadow: oklch(from var(--color-red) l c h / 0.7) 0px 0px 0px 1px
+            inset;
+        z-index: 1;
+    }
+
+    .hero__cta-btn-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* Tablet */
+    @media (max-width: 1023px) {
+        .hero__inner {
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero__meta {
+            justify-content: center;
+        }
+    }
+
+    /* Mobile */
     @media (max-width: 719px) {
         .hero {
             padding: 100px var(--space-4) var(--space-12);
             min-height: 90vh;
         }
 
+        .hero__title {
+            font-size: clamp(2.5rem, 12vw, 4rem);
+        }
+
         .hero__meta {
             font-size: var(--text-xs);
             gap: var(--space-2);
-        }
-
-        .hero__location {
-            font-size: var(--text-base);
-        }
-
-        .hero__subtitle {
-            font-size: var(--text-base);
         }
     }
 </style>

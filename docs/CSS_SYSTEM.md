@@ -28,8 +28,8 @@ It explains how global styles are organized, what design tokens are available, a
 **Neutral scale:**
 
 - `--color-white` — full white (`oklch(1 0 0)`)
-- `--color-white-muted` — 55% opacity white, for subdued text like section labels
-- `--color-white-dim` — 35% opacity white, for very subtle text
+- `--color-white-55` — 55% opacity white, for subdued text like section labels
+- `--color-white-35` — 35% opacity white, for very subtle text
 - `--color-white-border` — 8% opacity white, for hairline borders
 - `--color-white-border-strong` — 14% opacity white, for prominent borders
 - `--color-black` — pure black (`oklch(0 0 0)`)
@@ -58,7 +58,7 @@ All colors use the Oklch color space. The tone-based naming makes it clear what 
 
 ### Typography
 
-- `--font-display`
+- `--font-jockey-one`
 - `--font-body`
 - `--text-xs` through `--text-5xl`
 - `--leading-tight`, `--leading-normal`, `--leading-relaxed`
@@ -76,7 +76,7 @@ This gives a consistent spacing scale for margin, padding, and section layout.
 
 ### Layout
 
-- `--content-max-width`
+- `--content-container`
 - `--content-narrow`
 
 Use these values for container widths and content alignment.
@@ -117,9 +117,9 @@ These are the responsive breakpoints used in the project.
 - Prefer `var(--*)` tokens in component styles.
 - Keep component styles focused on structure and local layout.
 - Reuse the global spacing scale rather than inventing new numeric values.
-- Use tone-based color tokens like `--color-white-muted` and `--color-black-910` rather than hard-coded hex values.
+- Use tone-based color tokens like `--color-white-55` and `--color-black-910` rather than hard-coded hex values.
 - Use `--section-padding-y` and `--section-padding-x` for section spacing to keep section layouts consistent.
-- Use `--content-max-width` and `--content-narrow` for maximum container widths.
+- Use `--content-container` and `--content-narrow` for maximum container widths.
 - Apply `box-sizing: border-box` globally via `reset.css` so padding is easy to reason about.
 
 ## Current global conventions

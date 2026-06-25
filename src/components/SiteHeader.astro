@@ -3,8 +3,9 @@
 // Used by all pages. Contains MeetLogo, nav links, and CTA button.
 
 import { NAV_LINKS, NAV_CTA } from '@data/meet'
-import MeetLogo from '@components/MeetLogo.astro'
-import Button from '@components/Button.astro'
+import { Image } from 'astro:assets'
+import meetLogo from '@assets/images/jbwk-meet-logo.svg'
+import '@assets/styles/cta-button.css'
 ---
 
 <header
@@ -13,99 +14,138 @@ import Button from '@components/Button.astro'
     @scroll.window="scrolled = window.scrollY > 50"
     :class="{ 'site-header--scrolled': scrolled }"
 >
-    <div class="site-header__inner">
+    <div class="site-header__inner content-container">
         <!-- Logo -->
-        <a href="/" class="site-header__logo" aria-label="JBWK Meet — strona główna">
-            <MeetLogo variant="compact" size="sm" />
+        <a
+            href="/"
+            aria-label="JBWK Meet — strona główna"
+            class="site-header__logo-container"
+        >
+            <Image
+                src={meetLogo}
+                alt="Logo JBWK Meet"
+                class="site-header__logo"
+                loading="eager"
+            />
         </a>
 
         <!-- Desktop nav links -->
-        <nav class="site-header__nav" aria-label="Nawigacja główna">
+        <!-- <nav class="site-header__nav" aria-label="Nawigacja główna">
             {
                 NAV_LINKS.map((link) => (
                     <a href={link.href} class="site-header__link">
-                        {link.label}
+                        <div class="site-header__link-label">{link.label}</div>
                     </a>
                 ))
             }
-        </nav>
+        </nav> -->
 
         <!-- CTA button -->
-        <div class="site-header__cta">
-            <Button href={NAV_CTA.href} variant="primary">
+        <!-- <div class="site-header__cta">
+            <a
+                href={NAV_CTA.href}
+                class="btn btn--primary site-header__cta-btn"
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+            >
                 {NAV_CTA.label}
-            </Button>
-        </div>
+                <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                    ><path
+                        d="M5 12h13M13 6l6 6-6 6"
+                        stroke="currentColor"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path></svg
+                >
+            </a>
+        </div> -->
     </div>
 </header>
 
 <style>
     .site-header {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        top: 0px;
+        left: 0px;
+        right: 0px;
         z-index: 100;
-        height: 68px;
-        display: flex;
-        align-items: center;
-        background: transparent;
-        border-bottom: 1px solid transparent;
-        transition:
-            background var(--duration-normal) var(--ease-out),
-            border-color var(--duration-normal) var(--ease-out),
-            box-shadow var(--duration-normal) var(--ease-out);
+        height: var(--header-height);
+        background: oklch(0.1776 0 0 / 70%);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        transition: background 0.3s;
     }
 
     .site-header--scrolled {
-        background: oklch(0.1451 0 0 / 0.97);
-        border-bottom-color: var(--color-white-border);
-        box-shadow: var(--shadow-md);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        background: oklch(0.1776 0 0 / 97%);
     }
 
     .site-header__inner {
-        width: 100%;
-        max-width: var(--content-max-width);
-        margin: 0 auto;
-        padding: 0 var(--space-6);
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: var(--space-8);
     }
 
     .site-header__logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        flex-shrink: 0;
+        display: block;
+        object-fit: contain;
+        height: 100%;
+        width: auto;
+        justify-self: start;
+    }
+
+    .site-header__logo-container {
+        height: 100%;
+        padding: 1.25rem 0;
     }
 
     .site-header__nav {
         display: flex;
-        align-items: center;
-        gap: var(--space-6);
+        gap: 4px;
+        align-items: stretch;
+        height: 100%;
+        margin-left: auto;
     }
 
     .site-header__link {
-        font-family: var(--font-display);
-        font-size: var(--text-sm);
-        letter-spacing: var(--tracking-wide);
-        color: var(--color-white-muted);
-        text-decoration: none;
-        text-transform: uppercase;
-        transition: color var(--duration-fast) var(--ease-out);
-        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        color: var(--color-white-70);
+        transition: color var(--duration-fast);
     }
 
     .site-header__link:hover {
         color: var(--color-white);
     }
 
+    .site-header__link-label {
+        font-family: var(--font-jockey-one);
+        font-size: var(--text-sm);
+        letter-spacing: var(--tracking-wide);
+        text-decoration: none;
+        white-space: nowrap;
+        padding: 6px 12px;
+    }
+
     .site-header__cta {
         flex-shrink: 0;
+        margin-left: 12px;
+    }
+
+    .site-header__cta-btn {
+        font-weight: 400;
+        font-family: var(--font-jockey-one);
+        font-size: var(--text-sm);
+        padding: 10px 16px;
+        border-radius: 7px;
+        gap: 8px;
+        box-shadow: oklch(from var(--color-red) l c h / 0.27) 0px 4px 14px;
     }
 
     /* Tablet: hide nav links, keep logo + CTA */

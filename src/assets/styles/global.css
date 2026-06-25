@@ -1,4 +1,6 @@
-@import 'reset.css';
+@layer base;
+
+@import 'reset.css' layer(base);
 @import 'theme.css';
 
 html {
@@ -21,4 +23,12 @@ img {
     display: block;
     max-width: 100%;
     height: auto;
+}
+
+.content-container {
+    padding-left: 48px;
+    padding-right: 48px;
+    max-width: var(--content-container-desktop);
+    margin: 0px auto;
+    width: 100%;
 }
