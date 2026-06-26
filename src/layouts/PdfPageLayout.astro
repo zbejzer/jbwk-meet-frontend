@@ -1,0 +1,27 @@
+---
+// PdfPageLayout.astro — Shared layout for PDF viewer pages.
+// Props:
+//   pdfUrl: string  — path to the PDF file in /public/
+
+import BaseLayout from '@layouts/BaseLayout.astro'
+import PdfViewer from '@components/PdfViewer.astro'
+
+interface Props {
+    pdfUrl: string
+}
+
+const { pdfUrl } = Astro.props
+---
+
+<BaseLayout>
+    <main class="pdf-page">
+        <PdfViewer pdfUrl={pdfUrl} />
+    </main>
+</BaseLayout>
+
+<style>
+    main {
+        position: absolute;
+        inset: 0;
+    }
+</style>
