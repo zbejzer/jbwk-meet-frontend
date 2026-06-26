@@ -70,8 +70,8 @@
     --space-20: 80px;
     --space-24: 96px;
 
-    --section-padding-y: var(6rem);
-    --section-padding-x: var(1.5rem);
+    --section-padding-y: 6rem;
+    --section-padding-x: 1.5rem;
 
     /* ── Layout ─────────────────────────────────────────────────── */
     --content-container-desktop: 1400px;

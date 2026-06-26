@@ -48,7 +48,7 @@ export const EVENT = {
     regulaminUrl: '/meet-2026-regulamin',
     zgodaRodzicaUrl: '/meet-2026-zgoda-rodzica',
     mapsUrl: 'https://maps.app.goo.gl/1nF6BK3JHzSE2Tcx6',
-    formsUrl: 'https://forms.gle/bfRhUFYgonxFb74Z6'
+    formsUrl: 'https://forms.gle/bfRhUFYgonxFb74Z6',
     zgodyEmail: 'rejestracja@jbwk.pl',
 } as const
 

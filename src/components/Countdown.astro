@@ -49,7 +49,7 @@ const { targetDate } = Astro.props
 
 <script>
     document.addEventListener('alpine:init', () => {
-        Alpine.data('countdown', (isoDate: string) => ({
+        window.Alpine.data('countdown', (isoDate: string) => ({
             started: false,
             days: 0,
             hours: 0,
