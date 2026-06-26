@@ -19,28 +19,30 @@ This document explains the directory layout, the reasoning behind it, and the ru
 ```
 src/
 ├── assets/
-│   └── images/                        # Static images (kebab-case filenames)
+│   ├── images/                        # Static images (kebab-case filenames)
+│   └── styles/                        # Global stylesheets (kebab-case filenames)
+│       ├── reset.css                  # CSS Remedy based reset
+│       ├── theme.css                  # Design tokens (colors, spacing, etc.)
+│       ├── global.css                 # Imports reset + theme, base body/html rules
+│       └── cta-button.css             # Reusable .btn classes for CTA links
 │
 ├── components/
 │   │
 │   ├── SiteHeader.astro               # Shared — navbar, used by ALL pages
 │   ├── SiteFooter.astro               # Shared — footer, used by ALL pages
-│   ├── MeetLogo.astro                 # Shared — logo, reused in 3+ places
 │   ├── Countdown.astro                # Shared — Alpine island, countdown timer
-│   ├── FaqAccordion.astro             # Shared — <details>/<summary> accordion
 │   ├── SectionLabel.astro             # Shared — consistent section headings
-│   ├── Button.astro                   # Shared — CTA / link button
 │   │
 │   └── meet/                          # Sections for the meet landing page ONLY
 │       ├── HeroBanner.astro
-│       ├── WhatIsSection.astro
-│       ├── ProgramSection.astro
-│       ├── CompetitionsSection.astro
-│       ├── VenueSection.astro
-│       ├── BringYourKeyboardSection.astro
-│       ├── PartnersSection.astro
-│       ├── RegistrationSection.astro
-│       └── RegulationsSection.astro
+│       ├── WhatIsSection.astro        # (Stage 6 — not yet built)
+│       ├── ProgramSection.astro       # (Stage 7 — not yet built)
+│       ├── CompetitionsSection.astro  # (Stage 8 — not yet built)
+│       ├── VenueSection.astro         # (Stage 9 — not yet built)
+│       ├── BringYourKeyboardSection.astro  # (Stage 10 — not yet built)
+│       ├── PartnersSection.astro      # (Stage 11 — not yet built)
+│       ├── RegistrationSection.astro  # (Stage 12 — not yet built)
+│       └── RegulationsSection.astro   # (Stage 14 — not yet built)
 │
 ├── data/
 │   └── meet.ts                        # Event constants, FAQ, schedule — meet page only
@@ -72,18 +74,28 @@ The meet landing page represents **the current edition**. When a new edition hap
 
 ## Shared vs. Page-Specific
 
-| Component             | Location           | Used By                                           |
-| --------------------- | ------------------ | ------------------------------------------------- |
-| `SiteHeader.astro`    | `components/`      | `/`, `/gallery`, `/archive`                       |
-| `SiteFooter.astro`    | `components/`      | `/`, `/gallery`, `/archive`                       |
-| `MeetLogo.astro`      | `components/`      | `SiteHeader`, `SiteFooter`, `HeroBanner`          |
-| `Countdown.astro`     | `components/`      | `/` (meet landing), potentially future meet pages |
-| `FaqAccordion.astro`  | `components/`      | `/` (meet landing), potentially any page          |
-| `SectionLabel.astro`  | `components/`      | Any page with sections                            |
-| `Button.astro`        | `components/`      | Any page with CTAs                                |
-| `HeroBanner.astro`    | `components/meet/` | `/` only                                          |
-| `WhatIsSection.astro` | `components/meet/` | `/` only                                          |
-| …remaining 7 sections | `components/meet/` | `/` only                                          |
+| Component                        | Location           | Used By                                           | Status      |
+| -------------------------------- | ------------------ | ------------------------------------------------- | ----------- |
+| `SiteHeader.astro`               | `components/`      | `/`, `/gallery`, `/archive`                       | ✅ built    |
+| `SiteFooter.astro`               | `components/`      | `/`, `/gallery`, `/archive`                       | ✅ built    |
+| `Countdown.astro`                | `components/`      | `/` (meet landing), potentially future meet pages | ✅ built    |
+| `SectionLabel.astro`             | `components/`      | Any page with sections                            | ✅ built    |
+| `HeroBanner.astro`               | `components/meet/` | `/` only                                          | ✅ built    |
+| `WhatIsSection.astro`            | `components/meet/` | `/` only                                          | ⬜ Stage 6  |
+| `ProgramSection.astro`           | `components/meet/` | `/` only                                          | ⬜ Stage 7  |
+| `CompetitionsSection.astro`      | `components/meet/` | `/` only                                          | ⬜ Stage 8  |
+| `VenueSection.astro`             | `components/meet/` | `/` only                                          | ⬜ Stage 9  |
+| `BringYourKeyboardSection.astro` | `components/meet/` | `/` only                                          | ⬜ Stage 10 |
+| `PartnersSection.astro`          | `components/meet/` | `/` only                                          | ⬜ Stage 11 |
+| `RegistrationSection.astro`      | `components/meet/` | `/` only                                          | ⬜ Stage 12 |
+| `FaqAccordion.astro`             | `components/`      | `/` (meet landing), potentially any page          | ⬜ Stage 13 |
+| `RegulationsSection.astro`       | `components/meet/` | `/` only                                          | ⬜ Stage 14 |
+
+**Note:** The original plan called for `MeetLogo.astro` and `Button.astro` as shared primitive components.
+During implementation, these were replaced with simpler approaches:
+
+- **Logo:** Rendered directly via Astro's `<Image>` component in each component that needs it (SiteHeader, SiteFooter, HeroBanner). The SVG is imported from `@assets/images/jbwk-meet-logo.svg`.
+- **Buttons:** Styled using CSS utility classes defined in `cta-button.css` (`.btn`, `.btn--primary`, `.btn--secondary`, `.btn--cta`) rather than a `.astro` wrapper component. This avoids component overhead for what is essentially a styled `<a>` tag.
 
 ## Adding a New Page
 

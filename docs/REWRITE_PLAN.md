@@ -99,40 +99,25 @@ This document tracks the incremental rewrite of the meet landing page from a sin
 
 ## Stage 2 — Shared Primitives
 
-**Goal:** Three small, reusable Astro components used by many later stages.
+**Goal:** Small, reusable building blocks used by many later stages.
 
 **Files to create:**
 
-- `src/components/Button.astro`
-- `src/components/SectionLabel.astro`
-- `src/components/MeetLogo.astro`
+- `src/components/Button.astro` — **Skipped.** Buttons are styled via CSS utility classes in `cta-button.css` (`.btn`, `.btn--primary`, `.btn--secondary`, `.btn--cta`). Components import this CSS and use plain `<a>` tags. This avoids component overhead for what is essentially a styled link.
+- `src/components/SectionLabel.astro` — ✅ created
+- `src/components/MeetLogo.astro` — **Skipped.** The logo is rendered directly via Astro's `<Image>` component from `@assets/images/jbwk-meet-logo.svg` in each component that needs it (SiteHeader, SiteFooter, HeroBanner). This is simpler and avoids a wrapper component with multiple variant props.
 
-### `Button.astro`
+**Implementation notes (2026-06-26):**
 
-- Props: `href: string`, `label: string`, `variant?: 'primary' | 'secondary'`
-- Renders an `<a>` styled as a button
-- Matches the CTA button style from `preview.html`
-- Accepts an optional `<slot>` for overriding label text
-
-### `SectionLabel.astro`
-
-- Props: `label: string`
-- Renders a consistent section heading (the uppercase, small, muted label used before section titles)
-- Matches the `.twk-sect` pattern from the preview's TweaksPanel styles
-
-### `MeetLogo.astro`
-
-- Props: `variant?: 'default' | 'compact'` (compact for navbar, default for hero/footer)
-- Renders the JBWK Meet logo as inline SVG
-- No external image dependency — the SVG markup lives in the component
-- Responsive via CSS (scales with container)
+- `cta-button.css` defines the `.btn` family used in SiteHeader and HeroBanner
+- `SectionLabel.astro` is the only Stage 2 component actually created; it accepts `label`, `as` (element tag), and `class` props
+- Logo imports are done via `astro:assets` `<Image>` component with the SVG at `src/assets/images/jbwk-meet-logo.svg`
 
 **Review checklist:**
 
-- [ ] `Button` renders a styled link, both variants work
-- [ ] `SectionLabel` renders the correct typography
-- [ ] `MeetLogo` renders visible SVG, both variants distinguishable
-- [ ] All three components pass `astro check`
+- [x] `SectionLabel` renders the correct typography
+- [x] `.btn` classes produce correct primary/secondary/CTA variants
+- [x] Logo SVG renders correctly via astro:assets Image
 
 ---
 
